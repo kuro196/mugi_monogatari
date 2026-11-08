@@ -1,0 +1,14 @@
+{
+  "name": "ムギクエスト ～ムギ物語～",
+  "short_name": "ムギ物語",
+  "start_url": "./",
+  "scope": "./",
+  "display": "fullscreen",
+  "orientation": "landscape",
+  "background_color": "#ff9424",
+  "theme_color": "#ff8a1f",
+  "icons": [
+    {"src": "icon-192.png", "sizes": "192x192", "type": "image/png"},
+    {"src": "icon-512.png", "sizes": "512x512", "type": "image/png"}
+  ]
+}
