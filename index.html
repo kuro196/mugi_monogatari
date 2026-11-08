@@ -274,7 +274,7 @@ button:disabled{cursor:default}
 
 <section class="worldmap" id="worldmap" aria-label="世界地図" hidden>
 <div class="sel-head frame">
-<div class="titles"><small>MUGI QUEST</small><strong>ムギ物語</strong><span class="sub">6つのワールドを冒険しよう</span><span class="learned" id="learned" title="一発で正解したことのある単語の数 ／ ゲームに入っている単語の総数"></span><button class="checkopen" id="checkOpen" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4z" fill="currentColor"/></svg><span id="checkCount">要チェック 0語</span></button><button class="speakbtn" id="speakToggle" type="button" aria-pressed="true" title="問題を開いたときに発音を自動で流す"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5L6 9H3v6h3l5 4z" fill="currentColor"/><path class="wave" d="M15.5 8.5a5 5 0 010 7M18.5 5.5a9 9 0 010 13"/><path class="x" d="M16 9l5 6M21 9l-5 6"/></svg><span id="speakLabel">音声ON</span></button></div>
+<div class="titles"><small>MUGI QUEST</small><strong>ムギ物語</strong><span class="sub">6つのワールドを冒険しよう</span><span class="learned" id="learned" title="一発で正解したことのある単語の数 ／ ゲームに入っている単語の総数"></span><button class="checkopen" id="checkOpen" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4z" fill="currentColor"/></svg><span id="checkCount">要チェック 0語</span></button><button class="speakbtn" id="speakToggle" type="button" aria-pressed="true" title="ON：問題を開いたときの発音と、正解・まちがいの音を鳴らす"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5L6 9H3v6h3l5 4z" fill="currentColor"/><path class="wave" d="M15.5 8.5a5 5 0 010 7M18.5 5.5a9 9 0 010 13"/><path class="x" d="M16 9l5 6M21 9l-5 6"/></svg><span id="speakLabel">音声ON</span></button></div>
 <div class="starchip" id="allStars" aria-label="獲得した星"></div>
 <button class="iconbtn fsbtn" type="button" aria-label="全画面にする" title="全画面にする" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
 </div>
@@ -380,6 +380,7 @@ button:disabled{cursor:default}
 <script src="dungeon-b3.js"></script>
 <script src="dungeon-b4.js"></script>
 <script src="elementary-words.js"></script>
+<script src="extra-words.js"></script>
 <script>
 'use strict';
 const $=id=>document.getElementById(id);
@@ -432,8 +433,9 @@ const WORLD_MAPS={
                         13:[[8,24],[25,16],[42,24],[59,16],[76,24],[85,55],[67,49],[49,57],[31,49],[13,82],[36,85],[60,84],[85,82]]},
      deco:{12:[['tree',33,4],['tree',50,37],['tree',70,33],['tree',94,30],['tree',4,50],['tree',20,64],['tree',53,73],['tree',92,8],['tree',3,8],['flower',16,38],['flower',38,38],['flower',58,64],['flower',27,72],['flower',78,40],['flower',47,90],['pond',88,85]],
            13:[['tree',33,4],['tree',50,37],['tree',70,33],['tree',94,30],['tree',4,50],['tree',20,64],['tree',53,73],['tree',92,8],['tree',3,8],['flower',16,38],['flower',38,38],['flower',58,64],['flower',27,72],['flower',78,40],['flower',47,92],['flower',73,92]]}},
-  2:{theme:'mount',pos:[[10,76],[30,46],[52,72],[72,40],[89,20]],
-     deco:[['mount',20,16,14],['mount',48,22,12],['mount',63,84,12],['mount',88,72,14],['mount',7,40,9],['tree',38,90,7],['tree',78,92,6],['flake',66,14,3],['flake',30,8,3]]},
+  2:{theme:'mount',pos:{5:[[10,76],[30,46],[52,72],[72,40],[89,20]],8:[[7,76],[20,40],[33,74],[46,38],[59,72],[72,36],[84,70],[93,24]]},
+     deco:{5:[['mount',20,16,14],['mount',48,22,12],['mount',63,84,12],['mount',88,72,14],['mount',7,40,9],['tree',38,90,7],['tree',78,92,6],['flake',66,14,3],['flake',30,8,3]],
+           8:[['mount',8,14,10],['mount',33,14,9],['mount',59,12,9],['mount',80,10,8],['mount',20,90,8],['mount',46,90,8],['mount',72,92,8],['tree',95,90,6],['flake',27,57,3],['flake',66,55,3]]}},
   3:{theme:'sea',pos:{7:[[8,30],[22,70],[36,30],[50,70],[64,30],[77,70],[90,32]],9:[[7,30],[18,70],[29,30],[40,70],[51,30],[62,70],[73,30],[84,70],[93,32]]},
      deco:[['boat',57,50,7],['boat',15,92,6],['wave',15,50,3],['wave',43,50,3],['wave',71,50,3],['wave',87,52,3],['wave',30,92,3],['wave',62,92,3],['wave',36,8,3],['wave',78,10,3],['wave',96,90,3]]},
   4:{theme:'desert',pos:[[12,72],[37,30],[62,72],[87,30]],
@@ -457,9 +459,11 @@ const ICON={
   rock:'<svg viewBox="0 0 34 20"><path d="M2 19l4-11 8-6 9 3 7 7 2 7z" fill="#7a7389" stroke="#2b2442" stroke-width="1.8" stroke-linejoin="round"/><path d="M14 2l2 7 7-4" fill="none" stroke="#9c95ab" stroke-width="1.4"/></svg>'
 };
 
-// 小学校の単語（elementary-words.js）を、各ワールド・ダンジョンのデータに合体させる
-(function mergeElementary(){
-  const E=window.MUGI_ELEM;if(!E||!Array.isArray(E.words))return;
+// 追加の単語を、各ワールド・ダンジョンのデータに合体させる
+//  elementary-words.js（小学校の単語。表示に「・小学校」を付ける）と extra-words.js（中1でよく使う語・用法の追加）
+[[window.MUGI_ELEM,'小学校'],[window.MUGI_EXTRA,'']].forEach(([E,defaultSrc])=>{
+  if(!E||!Array.isArray(E.words))return;
+  const src=E.src===undefined?defaultSrc:E.src;
   const by=to=>E.words.filter(w=>w.to===to);
   [1,2,3,4,5].forEach(n=>{
     const d=window['MUGI_W'+n];if(!d)return;
@@ -467,7 +471,7 @@ const ICON={
     const add=by('W'+n);if(!add.length)return;
     d.stageNames=d.stageNames||{};
     let next=Math.max(...d.words.map(w=>w.stage))+1;const made={};
-    add.forEach(w=>{let st;if(/^\d+$/.test(w.group))st=Number(w.group);else{if(!made[w.group]){made[w.group]=next++;d.stageNames[made[w.group]]=w.group;}st=made[w.group];}d.words.push({...w,stage:st,src:'小学校'});});
+    add.forEach(w=>{let st;if(/^\d+$/.test(w.group))st=Number(w.group);else{if(!made[w.group]){made[w.group]=next++;d.stageNames[made[w.group]]=w.group;}st=made[w.group];}d.words.push({...w,stage:st,src});});
     d.similar=[...(d.similar||[]),...((E.similar||{})['W'+n]||[])];
   });
   // ダンジョンはテーマの最後に足してから、ステージを分け直す（17語まで1つ、28語まで2つ、それより多いと3つ）
@@ -477,14 +481,14 @@ const ICON={
     const theme=w=>(d.stageNames[w.stage]||'').replace(/[①②③④]$/,'');
     const order=[],groups={};const put=(t,w)=>{if(!groups[t]){groups[t]=[];order.push(t);}groups[t].push(w);};
     d.words.forEach(w=>put(theme(w),w));
-    add.forEach(w=>put(w.group,{...w,src:'小学校'}));
+    add.forEach(w=>put(w.group,{...w,src}));
     const words=[],names={};let st=0;
     order.forEach(t=>{const list=groups[t],n=list.length,k=n<=17?1:n<=28?2:3,base=Math.floor(n/k),extra=n%k;let i=0;
       for(let s=0;s<k;s++){st++;names[st]=t+(k>1?'①②③'[s]:'');const size=base+(s<extra?1:0);for(let j=0;j<size;j++){const w=list[i++];w.stage=st;words.push(w);}}});
     d.words=words;d.stageNames=names;
     d.similar=[...(d.similar||[]),...((E.similar||{})[code]||[])];
   });
-})();
+});
 
 // 読み込めたワールドのデータを整える（ステージ・似た意味の組・保存先）
 const WD={};
@@ -523,7 +527,7 @@ const dungeonStars=()=>AREAS_READY.reduce((s,a)=>s+worldStars(WD[a.no]),0);
 const dungeonMax=()=>AREAS_READY.reduce((s,a)=>s+WD[a.no].stages.length*3,0);
 // 選択肢に出す文字（数字は「13」のように算用数字だけ）
 const textOf=o=>o.choice||label(o.ja);
-const posLabel=w=>{const p=w.pos||worldOf(w).data.pos||'動詞';return (w.past?`${p}・過去形`:p)+(w.src?'・小学校':'');};
+const posLabel=w=>{const p=w.pos||worldOf(w).data.pos||'動詞';return (w.past?`${p}・過去形`:p)+(w.src==='小学校'?'・小学校':'');};
 // 一発で正解したことのある単語（全ワールド共通）。「w1-001」のようにワールド番号と単語番号で記録する
 const LEARN_KEY='mugiQuest4taku.learned';
 let learned=new Set(store.get(LEARN_KEY,[]));
@@ -642,7 +646,7 @@ function renderSelect(){
   const STAGES=cur.stages,saved=cur.saved;
   $('selSmall').textContent=cur.info.code?`MUGI QUEST · 名詞のダンジョン ${cur.info.code}`:`MUGI QUEST · WORLD ${cur.no}`;
   $('worldTitle').textContent=cur.data.title;
-  const elem=cur.words.filter(w=>w.src).length;
+  const elem=cur.words.filter(w=>w.src==='小学校').length;
   $('worldSub').textContent=`${cur.data.sub||'1年生の単語'} ${cur.words.length}語`+(elem?`（小学校 ${elem}語）`:'');
   $('legend').hidden=!cur.words.some(w=>w.past);
   const total=worldStars(cur);
@@ -699,7 +703,9 @@ function makePastChoices(w){
 
 // 不正解の選択肢：同じワールドの単語から選ぶ。つづりが同じ単語（you＝あなたは／あなたを など）と、似た意味の組は出さない。
 // データに scope:"stage" があるワールドは、まず同じステージから選ぶ
+// 単語のデータに wrong（不正解の選択肢3つ）が書いてあるときは、それを使う（天気・時刻の it →「それは・それを・あれは」など）
 function makeChoices(w){
+  if(Array.isArray(w.wrong)&&w.wrong.length>=3)return shuffle([{text:textOf(w),correct:true},...w.wrong.slice(0,3).map(t=>({text:t,correct:false}))]);
   if(w.past)return makePastChoices(w);
   const W=worldOf(w),g=groupKey(w);
   const cands=W.words.filter(o=>o!==w&&!o.past&&o.en!==w.en&&textOf(o)!==textOf(w)&&(g===undefined||groupKey(o)!==g));
@@ -744,8 +750,8 @@ function render(focus=false){
 function answer(choice){
   if(solved||$('game').hidden)return;const button=$('choices').children[choice];if(!button||button.disabled)return;
   const q=qs[index];
-  if(!q.choices[choice].correct){mistakes++;button.classList.add('wrong');button.disabled=true;setFeedback('wrong','おしい！ もう一度');mugi('oops');const available=[...$('choices').children].find(b=>!b.disabled);if(available)available.focus();return;}
-  solved=true;celebrate();mugi('happy');if(mistakes===0){firstTry++;addLearned(q.w);}records.push({first:mistakes===0});
+  if(!q.choices[choice].correct){mistakes++;button.classList.add('wrong');button.disabled=true;setFeedback('wrong','おしい！ もう一度');mugi('oops');sfx('ng');const available=[...$('choices').children].find(b=>!b.disabled);if(available)available.focus();return;}
+  solved=true;celebrate();mugi('happy');sfx('ok');if(mistakes===0){firstTry++;addLearned(q.w);}records.push({first:mistakes===0});
   button.classList.add('correct');[...$('choices').children].forEach(b=>b.disabled=true);
   $('translation').textContent=q.w.exJa||'';$('translation').hidden=!q.w.exJa;
   setFeedback('correct',mistakes===0?'正解！ 一発クリア！':'正解！');setScore();
@@ -777,12 +783,31 @@ function finish(){
 }
 
 function stopAudio(){if('speechSynthesis' in window)window.speechSynthesis.cancel();}
-function speakWord(w){if(!('speechSynthesis' in window)){audioError();return;}stopAudio();const u=new SpeechSynthesisUtterance(w.say||w.en);u.lang='en-US';u.rate=.8;const voices=window.speechSynthesis.getVoices();const voice=voices.find(v=>v.lang==='en-US')||voices.find(v=>v.lang.startsWith('en'));if(voice)u.voice=voice;u.onerror=e=>{if(e.error!=='canceled'&&e.error!=='interrupted')audioError();};$('audioNote').hidden=true;window.speechSynthesis.speak(u);}
+// 読み上げがおかしくなる単語の読ませ方。例文での使われ方に合わせて、同じ音になるつづりで読ませる
+//  I：ローマ数字の「1」や文字の名前と読まれることがある → eye（アイ）
+//  live・close・use：例文ではどれも動詞なので、動詞の読み方（リブ・クローズ・ユーズ）にする
+//  read の現在形・過去形は、データの say 欄で読み分けている（Read.／red）
+//  present・wind・minute・subject・contest・entrance は例文で名詞なので、そのまま（1語だけなら名詞の読み方になる）
+const SAY_FIX={'I':'eye','live':'liv','close':'cloze','use':'yooz'};
+function speakWord(w){if(!('speechSynthesis' in window)){audioError();return;}stopAudio();const u=new SpeechSynthesisUtterance(w.say||SAY_FIX[w.en]||w.en);u.lang='en-US';u.rate=.8;const voices=window.speechSynthesis.getVoices();const voice=voices.find(v=>v.lang==='en-US')||voices.find(v=>v.lang.startsWith('en'));if(voice)u.voice=voice;u.onerror=e=>{if(e.error!=='canceled'&&e.error!=='interrupted')audioError();};$('audioNote').hidden=true;window.speechSynthesis.speak(u);}
 $('sound').addEventListener('click',()=>speakWord(qs[index].w));
 // 音声 ON/OFF：ON のときは問題を開くたびに発音を自動で流す（はじめは ON。設定は端末に残す）
 const SPEAK_KEY='mugiQuest4taku.autoSpeak';
+// 正解の「ピンポン」と、まちがいの「ブッ」。音のファイルは使わず、その場で音を作って鳴らす（音声OFFのときは鳴らさない）
+let actx=null;
+function sfx(kind){
+  if(!autoSpeak)return;
+  try{
+    actx=actx||new (window.AudioContext||window.webkitAudioContext)();
+    if(actx.state==='suspended')actx.resume();
+    const t=actx.currentTime;
+    const tone=(freq,start,dur,type,vol)=>{const o=actx.createOscillator(),g=actx.createGain();o.type=type;o.frequency.setValueAtTime(freq,t+start);g.gain.setValueAtTime(0.0001,t+start);g.gain.exponentialRampToValueAtTime(vol,t+start+0.01);g.gain.exponentialRampToValueAtTime(0.0001,t+start+dur);o.connect(g);g.connect(actx.destination);o.start(t+start);o.stop(t+start+dur+0.05);};
+    if(kind==='ok'){tone(1318.5,0,0.3,'sine',0.35);tone(1046.5,0.16,0.6,'sine',0.35);}
+    else{tone(150,0,0.28,'square',0.16);tone(105,0,0.28,'sawtooth',0.12);}
+  }catch(e){}
+}
 let autoSpeak=store.get(SPEAK_KEY,true)!==false;
-function paintSpeak(){$('speakToggle').classList.toggle('off',!autoSpeak);$('speakToggle').setAttribute('aria-pressed',String(autoSpeak));$('speakLabel').textContent=autoSpeak?'音声ON':'音声OFF';$('speakToggle').setAttribute('aria-label',autoSpeak?'問題を開いたときの音声：ON':'問題を開いたときの音声：OFF');}
+function paintSpeak(){$('speakToggle').classList.toggle('off',!autoSpeak);$('speakToggle').setAttribute('aria-pressed',String(autoSpeak));$('speakLabel').textContent=autoSpeak?'音声ON':'音声OFF';$('speakToggle').setAttribute('aria-label',autoSpeak?'音声（発音と正解・まちがいの音）：ON':'音声（発音と正解・まちがいの音）：OFF');}
 $('speakToggle').addEventListener('click',()=>{autoSpeak=!autoSpeak;store.set(SPEAK_KEY,autoSpeak);paintSpeak();});
 paintSpeak();
 function audioError(){$('audioNote').textContent='音声を再生できませんでした。端末の英語音声設定を確認してください。';$('audioNote').hidden=false;}
